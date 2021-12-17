@@ -19,14 +19,17 @@ for line in list:
 
 horizontal = 0
 depth = 0
+aim = 0
 
 for line in list1:
     if line[0] == 'forward':
         horizontal += int(line[1])
+    if line[0] == 'forward':
+        depth = depth + (aim * int(line[1]))
     if line[0] == 'down':
-        depth = depth + int(line[1])
+        aim = aim + int(line[1])
     if line[0] == 'up':
-        depth = depth - int(line[1])
+        aim = aim - int(line[1])
 
 final = horizontal * depth
 
