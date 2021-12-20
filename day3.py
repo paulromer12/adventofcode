@@ -169,8 +169,8 @@ print("")
 print(zero11)
 print(one11)
 
-gamma_rate = '10011'
-epsilon_rate = '01100'
+gamma_rate = '100111100011'
+epsilon_rate = '011000011100'
 gamma_int = int(gamma_rate, 2)
 epsilon_int = int(epsilon_rate, 2)
 power_consumption = gamma_int * epsilon_int
