@@ -1,6 +1,9 @@
 file = open('day3data', 'r')
 data = file.readlines()
 
+# TODO:
+# How can I add functions to this to clean up the code and make it less repetative
+
 list = []
 bits1 = []
 bits2 = []
