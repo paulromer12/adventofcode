@@ -11,9 +11,12 @@ for line in data:
 #output variables needed
 gamma_rate_binary = ''
 epsilon_rate_binary = ''
+oxygen_generator_rating = -1
+co2_scrubber_rating = -1
+life_support_rating = oxygen_generator_rating * co2_scrubber_rating
 
 
-def getGammaBinary(bits):
+def getGammaEpsilonBinary(bits):
     global gamma_rate_binary
     global epsilon_rate_binary
     zero = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -41,14 +44,36 @@ def getGammaBinary(bits):
         if v == '1':
             epsilon_rate_binary = epsilon_rate_binary + '0'
 
-    print(gamma_rate_binary)
-    print(epsilon_rate_binary)
 
-getGammaBinary(bits)
-
-
+getGammaEpsilonBinary(bits)
 gamma_int = int(gamma_rate_binary, 2)
 epsilon_int = int(epsilon_rate_binary, 2)
 power_consumption = gamma_int * epsilon_int
 print('Gamma is ',gamma_int, 'Epsilon is ',epsilon_int)
 print(power_consumption)
+
+def findOxygenGenerator(bits):
+    global oxygen_generator_rating
+
+    oxygen_generator_options = []
+    zero = 0
+    one = 0
+
+    for item in bits:
+        if item[0] == '0':
+            zero += 1
+        if item[0] == '1':
+            one += 1
+    if zero > one:
+        for item in bits:
+            if item[0] == '0':
+                oxygen_generator_options.append(item)
+    else:
+        for item in bits:
+            if item[0] == '1':
+                oxygen_generator_options.append(item)
+
+    print(zero, '/n', one)
+    print(oxygen_generator_options)
+
+findOxygenGenerator(bits)
