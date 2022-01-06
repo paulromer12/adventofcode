@@ -1,24 +1,41 @@
-def addToLists():
-    x = ['1', '2', '1', '2', '1', '2', '1', '2', '1', '2', '1', '2', ]
-    zero = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    one = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    length = len(zero)
-    k = 0
+bits = ['10', '01', '10']
 
-    for i in x:
-        if i == '1':
-            zero[k] += 1
-        else:
-            one[k] += 1
-        k += 1
-        # for i in item:
-        #     index = index + 1
-        #     if i == '0':
-        #         zero[index] += 1
-        #     if i == '1':
-        #         one[index] += 1
+def findOxygenGenerator(bits):
+    global oxygen_generator_rating
 
-    print(zero)
-    print(one)
+    oxygen_generator_options = bits
+    zero = 0
+    one = 0
+    good_numbers = []
 
-addToLists()
+
+    while len(oxygen_generator_options) > 1:
+        for i in range(0, 12):
+            print(f'zeros = {zero}')
+            print(f'ones = {one}')
+            zero = 0
+            one = 0
+            print('There are', len(oxygen_generator_options), 'items left.')
+            if len(oxygen_generator_options) == 1:
+                oxygen_generator_rating = oxygen_generator_options[0]
+            else:
+                for item in oxygen_generator_options:
+                    if item[i] == '0':
+                        zero += 1
+                    if item[i] == '1':
+                        one += 1
+                if zero > one:
+                    for item in oxygen_generator_options:
+                        if item[i] == '0':
+                            good_numbers.append(item)
+                if one > zero:
+                    for item in oxygen_generator_options:
+                        if item[i] == '1':
+                            good_numbers.append(item)
+
+    print(oxygen_generator_rating)
+
+
+
+
+findOxygenGenerator(bits)
